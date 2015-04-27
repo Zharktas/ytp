@@ -67,12 +67,12 @@ def get_sorted_facet_items_dict(facet, limit=10, exclude_active=False):
 
 
 def calculate_datasets_five_star_rating(dataset_id):
-    from ckanext.qa.reports import openness_for_organization
+    from ckanext.qa.reports import five_stars
 
-    qa = openness_for_organization(dataset_id)
+    qa = five_stars(dataset_id)
 
     stars = 0
-    for resource in qa.table:
+    for resource in qa:
         if resource['openness_score'] > stars:
             stars = resource['openness_score']
 
