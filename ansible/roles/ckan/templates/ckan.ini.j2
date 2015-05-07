@@ -23,7 +23,7 @@ who.config_file = %(here)s/who.ini
 who.log_level = warning
 who.log_file = %(cache_dir)s/who_log.ini
 
-sqlalchemy.url = postgres://{{ ckan_database_username }}:{{ ckan_database_password }}@{{ ckan_database_host }}/{{ ckan_database_name }}
+sqlalchemy.url = postgresql://{{ ckan_database_username }}:{{ ckan_database_password }}@{{ ckan_database_host }}/{{ ckan_database_name }}
 
 ckan.site_url = https://{{ hostname }}
 ckan.site_url_internally = https://{{ hostname }}/data/
@@ -66,7 +66,7 @@ smtp.server = {{ email_domain_access }}
 smtp.starttls = False
 smtp.mail_from = no-reply
 
-ckanext.ytp.drupal.connection = postgres://{{ drupal_database_username }}:{{ drupal_database_password }}@{{ database_host }}/{{ drupal_database_name }}
+ckanext.ytp.drupal.connection = postgresql://{{ drupal_database_username }}:{{ drupal_database_password }}@{{ database_host }}/{{ drupal_database_name }}
 
 ckan.harvest.mq.type = redis
 ckan.harvest.mq.hostname = {{ redis_hostname }}
