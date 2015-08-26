@@ -6,8 +6,8 @@ from ckan.logic import get_action, NotFound, NotAuthorized, check_access, clean_
 import ckan.lib.navl.dictization_functions as dictization_functions
 from ckan.lib import helpers as h
 from ckan.controllers.user import UserController
-from ckan.lib.base import abort, validate, render
-import ckan.new_authz as new_authz
+from ckan.lib.base import abort, render
+import ckan.authz as authz
 
 
 import logging
@@ -19,7 +19,7 @@ DataError = dictization_functions.DataError
 
 class YtpUserController(UserController):
 
-    # Modify original CKAN Edit user controller
+    # Modify original CKAN Edit user controller with apikey and email in forms
     def edit(self, id=None, data=None, errors=None, error_summary=None):
         context = {'save': 'save' in request.params,
                    'schema': self._edit_form_to_db_schema(),
@@ -47,7 +47,8 @@ class YtpUserController(UserController):
 
             schema = self._db_to_edit_form_schema()
             if schema:
-                old_data, errors = validate(old_data, schema)
+                old_data, errors = \
+                    dictization_functions.validate(old_data, schema, context)
 
             c.display_name = old_data.get('display_name')
             c.user_name = old_data.get('name')
@@ -61,7 +62,8 @@ class YtpUserController(UserController):
 
         user_obj = context.get('user_obj')
 
-        if not (new_authz.is_sysadmin(c.user) or c.user == user_obj.name):
+        if not (authz.is_sysadmin(c.user)
+                or c.user == user_obj.name):
             abort(401, _('User %s not authorized to edit %s') %
                   (str(c.user), id))
 
