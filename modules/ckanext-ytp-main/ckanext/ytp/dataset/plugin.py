@@ -400,8 +400,6 @@ class YTPDatasetForm(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
         return c.userobj
 
     def _get_user(self, user):
-        if user in [model.PSEUDO_USER__LOGGED_IN, model.PSEUDO_USER__VISITOR]:
-            return user
         if not isinstance(user, model.User):
             user_name = unicode(user)
             user = model.User.get(user_name)

@@ -16,6 +16,7 @@ import sqlalchemy
 import sqlalchemy.sql
 from ckanext.ytp.common.converters import to_list_json
 from ckanext.ytp.common.tools import add_languages_modify, add_translation_modify_schema
+import ckan.authz as authz
 
 log = logging.getLogger(__name__)
 
@@ -130,29 +131,47 @@ def action_user_show(context, data_dict):
         user_dict.pop('email', None)
         user_dict.pop('email_hash', None)
 
+    # include private and draft datasets?
+    requester = context.get('user')
+    if requester:
+        requester_looking_at_own_account = requester == user_obj.name
+        include_private_and_draft_datasets = \
+            authz.is_sysadmin(requester) or \
+            requester_looking_at_own_account
+    else:
+        include_private_and_draft_datasets = False
+    context['count_private_and_draft_datasets'] = \
+        include_private_and_draft_datasets
+
+    user_dict = model_dictize.user_dictize(user_obj, context)
+
     if context.get('return_minimal'):
+        log.warning('Use of the "return_minimal" in user_show is '
+                    'deprecated.')
         return user_dict
 
-    revisions_q = model.Session.query(model.Revision).filter_by(author=user_obj.name)
+    if data_dict.get('include_datasets', False):
+        user_dict['datasets'] = []
 
-    revisions_list = []
-    for revision in revisions_q.limit(20).all():
-        revision_dict = logic.get_action('revision_show')(context, {'id': revision.id})
-        revision_dict['state'] = revision.state
-        revisions_list.append(revision_dict)
-    user_dict['activity'] = revisions_list
+        fq = "+creator_user_id:{0}".format(user_dict['id'])
 
-    user_dict['datasets'] = []
-    dataset_q = model.Session.query(model.Package).join(model.PackageRole).filter_by(user=user_obj, role=model.Role.ADMIN).limit(50)
+        search_dict = {'rows': 50}
 
-    for dataset in dataset_q:
-        try:
-            dataset_dict = logic.get_action('package_show')(context, {'id': dataset.id})
-        except logic.NotAuthorized:
-            continue
-        user_dict['datasets'].append(dataset_dict)
+        if include_private_and_draft_datasets:
+            context['ignore_capacity_check'] = True
+            search_dict.update({'include_drafts': True})
 
-    user_dict['num_followers'] = logic.get_action('user_follower_count')({'model': model, 'session': model.Session}, {'id': user_dict['id']})
+        search_dict.update({'fq': fq})
+
+        user_dict['datasets'] = \
+            logic.get_action('package_search')(context=context,
+                                               data_dict=search_dict) \
+                .get('results')
+
+    if data_dict.get('include_num_followers', False):
+        user_dict['num_followers'] = logic.get_action('user_follower_count')(
+            {'model': model, 'session': model.Session},
+            {'id': user_dict['id']})
 
     return user_dict
 

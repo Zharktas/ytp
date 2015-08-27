@@ -72,6 +72,7 @@ ckan_patches:
   - { patch: "https://github.com/yhteentoimivuuspalvelut/ckan/commit/e31fdad406700e2a28703eea32100417181088bb.patch", file: "fix-template-error-in-resources.patch"} # ytp specific
   - { patch: "https://github.com/yhteentoimivuuspalvelut/ckan/commit/92086374f25ccde6854ef8f5c10b5cd39530ca09.patch", file: "add-event-callbacks-to-autocomplete.patch"} # ytp specific
   - { patch: "https://github.com/yhteentoimivuuspalvelut/ckan/commit/75795a88e147ec1dbc8093024408bf1841e7b31f.patch", file: "enable-celery-queues"} # ytp specific
+  - { patch: "https://github.com/yhteentoimivuuspalvelut/ckan/commit/cd4e5c1ef0beac631b7d05a46a4cb5d754d9e9a4.patch", file: "fix-orglist.patch"} # in ckan master
 
 service_database_enabled: false
 auto_author_enabled: true
