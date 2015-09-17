@@ -22,15 +22,9 @@ def _user_image(user, size):
     return literal('<img src="%s" width="%s" height="%s" class="media-image" />' % (url, size, size))
 
 
-def helper_is_pseudo(user):
-    """ Check if user is pseudo user """
-    return user in [model.PSEUDO_USER__LOGGED_IN, model.PSEUDO_USER__VISITOR]
-
 
 def helper_linked_user(user, maxlength=0, avatar=20):
     """ Return user as HTML item """
-    if helper_is_pseudo(user):
-        return user
     if not isinstance(user, model.User):
         user_name = unicode(user)
         user = model.User.get(user_name)
@@ -93,7 +87,7 @@ class YtpUserPlugin(plugins.SingletonPlugin):
         model_setup()
 
     def get_helpers(self):
-        return {'linked_user': helper_linked_user, 'organizations_for_select': helper_organizations_for_select, 'is_pseudo': helper_is_pseudo,
+        return {'linked_user': helper_linked_user, 'organizations_for_select': helper_organizations_for_select,
                 'main_organization': helper_main_organization,
                 'get_image_upload_size': get_image_upload_size}
 
@@ -110,6 +104,6 @@ class YtpUserPlugin(plugins.SingletonPlugin):
             m.connect('/user/edit', action='edit')
             m.connect('/user/edit/{id:.*}', action='edit')
             m.connect('/user/me', action='me')
-            m.connect('/user/{id}', action='read')
+            #m.connect('/user/{id}', action='read')
 
         return map
