@@ -192,7 +192,7 @@ class CSWHarvester(SpatialHarvester, SingletonPlugin):
 
         identifier = harvest_object.guid
         try:
-            record = self.csw.getrecordbyid([identifier], outputschema=self.output_schema())
+            record = self.csw.getrecordbyid([identifier])
         except Exception, e:
             self._save_object_error('Error getting the CSW record with GUID %s' % identifier, harvest_object)
             return False
@@ -221,6 +221,19 @@ class CSWHarvester(SpatialHarvester, SingletonPlugin):
                 status_extra.save()
             else:
                 log.info("Found tagged record with guid %s" % identifier)
+
+        require_in_abstract = source_config.get('require_in_abstract', None)
+        if require_in_abstract:
+            if not record.get('notes') or not require_in_abstract in record.get('notes'):
+                status_extra = self._get_extra(harvest_object, 'status')
+                if status_extra is None:
+                    self._save_object_error('No status set for object with GUID %s' % identifier,
+                                            harvest_object)
+                    return False
+                status_extra.value = 'delete'
+                status_extra.save()          
+            else:
+                log.info("Found tagged record with guid %s" % identifier)      
 
         try:
             # Save the fetch contents in the HarvestObject

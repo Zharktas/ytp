@@ -79,10 +79,10 @@ class CswService(OwsService):
         kwa = {
             "constraints": constraints,
             "typenames": typenames,
-            "esn": esn,
+#            "esn": esn,
             "startposition": skip,
             "maxrecords": count,
-            "outputschema": namespaces[outputschema],
+#            "outputschema": namespaces[outputschema],
             }
         log.info('Making CSW request: getrecords2 %r', kwa)
         csw.getrecords2(**kwa)
@@ -106,10 +106,10 @@ class CswService(OwsService):
         kwa = {
             "constraints": constraints,
             "typenames": typenames,
-            "esn": esn,
+#            "esn": esn,
             "startposition": startposition,
             "maxrecords": page,
-            "outputschema": namespaces[outputschema],
+#            "outputschema": namespaces[outputschema],
             "cql":cql,
             }
         i = 0
