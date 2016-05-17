@@ -12,7 +12,7 @@
   roles:
     - common
     - users
-    - clean
+    #- clean
     - database
     - jetty
     - redis
