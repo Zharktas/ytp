@@ -8,7 +8,7 @@ features_module_path: "{{ drupal_root }}/sites/all/modules/ytp_features"
 
 bootstrap_version: "3.3.4"
 
-drupal_files_path: "{{ files_root }}/drupal"
+drupal_files_path: "{{ local_files_root }}/drupal"
 
 extracted_features:
   - language_feature

@@ -44,6 +44,7 @@ log_path: /var/log/ckan
 static_path: "{{ www_root }}/static"
 
 files_root: "{{ server_path }}/files"
+local_files_root: "{{ server_path }}/local"
 
 all_paths:
   - "{{ server_path }}"

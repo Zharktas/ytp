@@ -3,3 +3,17 @@
 # Changes that are required already installed system
 
 
+- name: Drupal files need migration?
+  stat: path="{{ local_files_root }}/drupal"
+  register: local_drupal_root
+
+- name: Create local drupal root
+  file: path="{{ local_files_root }}/drupal" state=directory owner={{ www_user }} group={{ www_group }} mode="0755"
+  when: local_drupal_root.stat.isdir is not defined
+
+- name: Migrate drupal files from database server to web server
+  command: "cp -r {{ files_root }}/drupal {{ local_files_root }}"
+  when: local_drupal_root.stat.isdir is not defined
+
+- name: Ensure ownership of migrated files
+  shell: chown {{ www_user }}:{{ www_group }} "{{ local_files_root }}" && chmod -R u+rwX,g+rwX,o-rwx "{{ local_files_root }}"
