@@ -109,3 +109,8 @@
   when: modules_copy|changed
   tags:
   - resources
+
+
+- name: Ensure local files root exists
+  file: path="{{ local_files_root }}" state=directory owner={{ www_user }} group={{ www_group }} mode="0755"
+  tags: common

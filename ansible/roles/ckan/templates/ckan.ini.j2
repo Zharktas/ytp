@@ -109,10 +109,10 @@ ckanext.ytp.theme.logos = default:opendata_fi.png avoindata_default:avoindata_fi
 ofs.impl = pairtree
 
 # 2.1 filestore:
-ofs.storage_dir = {{ ckan_files_path }}
+ofs.storage_dir = {{ ckan_storage_path }}
 
 # 2.2 filestore:
-ckan.storage_path = {{ ckan_files_path }}
+ckan.storage_path = {{ ckan_storage_path }}
 
 {% if google_analytics -%}
 googleanalytics.id = {{ google_analytics.id }}
