@@ -58,10 +58,10 @@ this.ckan.module('notification', function($, _) {
 
             if (options.action == 'subscribe') {
                 options.action = 'unsubscribe';
-                this.el.html('<i class="icon-remove-sign"></i> ' + this.i18n('unsubscribe')).addClass('btn-danger');
+                this.el.html('<i class="fa fa-times-circle"></i> ' + this.i18n('unsubscribe')).addClass('btn-danger');
             } else {
                 options.action = 'subscribe';
-                this.el.html('<i class="icon-plus-sign"></i> ' + this.i18n('subscribe')).removeClass('btn-danger');
+                this.el.html('<i class="fa fa-plus-circle"></i> ' + this.i18n('subscribe')).removeClass('btn-danger');
             }
 
             console.log("done");
