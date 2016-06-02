@@ -4,7 +4,7 @@
 
 {% block secondary_content %}
   <section class="module module-narrow">
-    <h2 class="module-heading"><i class="icon-large icon-info-sign"></i> {{ _('My own memberships') }}</h2>
+    <h2 class="module-heading"><i class="fa fa-lg fa-info-circle"></i> {{ _('My own memberships') }}</h2>
     <div class="module-content">
       <p>
         {% trans -%}
@@ -51,13 +51,13 @@
             <td>{% if h.check_access('member_request_membership_cancel', {'organization_id': mrequest.organization_id}) %}
               {% set locale = h.dump_json({'content': _('Are you sure you want to end the membership?')}) %}
               <a class="btn btn-danger" href="{{ h.url_for('member_request_membership_cancel', organization_id=mrequest.organization_id) }}" data-module="confirm-action" data-module-i18n="{{ locale }}">
-              <i class="icon-circle-arrow-right"></i>
+              <i class="fa fa-arrow-circle-right"></i>
                 {% trans %}Cancel membership{% endtrans %}
               </a>
               {% elif h.check_access('member_request_cancel', {'organization_id': mrequest.organization_id}) %}
               {% set locale = h.dump_json({'content': _('Are you sure you want to cancel this pending request?')}) %}
               <a class="btn btn-primary" href="{{ h.url_for('member_request_cancel', organization_id=mrequest.organization_id) }}" data-module="confirm-action" data-module-i18n="{{ locale }}">
-              <i class="icon-circle-arrow-right"></i>
+              <i class="fa fa-arrow-circle-right"></i>
                 {% trans %}Cancel request{% endtrans %}
               </a>
               {% endif %}
