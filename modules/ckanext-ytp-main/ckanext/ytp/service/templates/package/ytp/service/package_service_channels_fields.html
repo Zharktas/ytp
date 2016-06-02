@@ -151,34 +151,34 @@
 <h3>{{ _("Service Channels") }}</h3>
 <ul id="service-channels-list" data-service-channels-package="{{ data.id }}">
 
-<a style="float: right; display: none;" href="javascript:void(0);" id="service-channel-remove-template" data-confirm-message="{{ _('Are you sure you want to remove selected resource?') }}"><i class="icon-remove-sign"></i> {{ _('Remove' ) }}</a>
+<a style="float: right; display: none;" href="javascript:void(0);" id="service-channel-remove-template" data-confirm-message="{{ _('Are you sure you want to remove selected resource?') }}"><i class="fa fa-times-circle"></i> {{ _('Remove' ) }}</a>
 
 {% for resource in data.resources %}
     <li class="service-channels-item" id="resource_original_{{ loop.index0 }}">
 
     {% if resource.service_channel_type == 'electronic_service' %}
-        <a href="javascript:void(0);" onclick="$('#electronic_service_resource_{{ loop.index0 }}').toggle();"><i class="icon-plus"></i> {{ _('Electronic Service' ) }}</a>
-        <a style="float: right;" href="javascript:void(0);" onclick="if (confirm('{{ _('Are you sure you want to remove selected resource?') }}')) $('#resource_original_{{ loop.index0 }}').remove();"><i class="icon-remove-sign"></i> {{ _('Remove' ) }}</a>
+        <a href="javascript:void(0);" onclick="$('#electronic_service_resource_{{ loop.index0 }}').toggle();"><i class="fa fa-plus"></i> {{ _('Electronic Service' ) }}</a>
+        <a style="float: right;" href="javascript:void(0);" onclick="if (confirm('{{ _('Are you sure you want to remove selected resource?') }}')) $('#resource_original_{{ loop.index0 }}').remove();"><i class="fa fa-times-circle"></i> {{ _('Remove' ) }}</a>
         <div id="electronic_service_resource_{{ loop.index0 }}" style="display: none;">
             {{ service_electronic_service(loop.index0 ~ "", "resources__" ~ loop.index0 ~ "__", resource) }}
         </div>
     {% elif resource.service_channel_type == 'office_or_service_point' %}
-        <a href="javascript:void(0);" onclick="$('#office_or_service_point_{{ loop.index0 }}').toggle();"><i class="icon-plus"></i> {{ _('Office or Service Point' ) }}</a>
-        <a style="float: right;" href="javascript:void(0);" onclick="if (confirm('{{ _('Are you sure you want to remove selected resource?') }}')) $('#resource_original_{{ loop.index0 }}').remove();"><i class="icon-remove-sign"></i> {{ _('Remove' ) }}</a>
+        <a href="javascript:void(0);" onclick="$('#office_or_service_point_{{ loop.index0 }}').toggle();"><i class="fa fa-plus"></i> {{ _('Office or Service Point' ) }}</a>
+        <a style="float: right;" href="javascript:void(0);" onclick="if (confirm('{{ _('Are you sure you want to remove selected resource?') }}')) $('#resource_original_{{ loop.index0 }}').remove();"><i class="fa fa-times-circle"></i> {{ _('Remove' ) }}</a>
 
         <div id="office_or_service_point_{{ loop.index0 }}" style="display: none;">
             {{ service_office_or_service_point(loop.index0 ~ "", "resources__" ~ loop.index0 ~ "__", resource) }}
         </div>
     {% elif resource.service_channel_type == 'postal_address' %}
-        <a href="javascript:void(0);" onclick="$('#postal_address_{{ loop.index0 }}').toggle();"><i class="icon-plus"></i> {{ _('Postal Address' ) }}</a>
-        <a style="float: right;" href="javascript:void(0);" onclick="if (confirm('{{ _('Are you sure you want to remove selected resource?') }}')) $('#resource_original_{{ loop.index0 }}').remove();"><i class="icon-remove-sign"></i> {{ _('Remove' ) }}</a>
+        <a href="javascript:void(0);" onclick="$('#postal_address_{{ loop.index0 }}').toggle();"><i class="fa fa-plus"></i> {{ _('Postal Address' ) }}</a>
+        <a style="float: right;" href="javascript:void(0);" onclick="if (confirm('{{ _('Are you sure you want to remove selected resource?') }}')) $('#resource_original_{{ loop.index0 }}').remove();"><i class="fa fa-times-circle"></i> {{ _('Remove' ) }}</a>
 
         <div id="postal_address_{{ loop.index0 }}" style="display: none;">
             {{ service_postal_address(loop.index0 ~ "", "resources__" ~ loop.index0 ~ "__", resource) }}
         </div>
     {% elif resource.service_channel_type == 'telephone_service' %}
-        <a href="javascript:void(0);" onclick="$('#telephone_service_{{ loop.index0 }}').toggle();"><i class="icon-plus"></i> {{ _('Telephone Service' ) }}</a>
-        <a style="float: right;" href="javascript:void(0);" onclick="if (confirm('{{ _('Are you sure you want to remove selected resource?') }}')) $('#resource_original_{{ loop.index0 }}').remove();"><i class="icon-remove-sign"></i> {{ _('Remove' ) }}</a>
+        <a href="javascript:void(0);" onclick="$('#telephone_service_{{ loop.index0 }}').toggle();"><i class="fa fa-plus"></i> {{ _('Telephone Service' ) }}</a>
+        <a style="float: right;" href="javascript:void(0);" onclick="if (confirm('{{ _('Are you sure you want to remove selected resource?') }}')) $('#resource_original_{{ loop.index0 }}').remove();"><i class="fa fa-times-circle"></i> {{ _('Remove' ) }}</a>
 
         <div id="telephone_service_{{ loop.index0 }}" style="display: none;">
             {{ service_telephone_service(loop.index0 ~ "", "resources__" ~ loop.index0 ~ "__", resource) }}
@@ -193,10 +193,10 @@
 </ul>
 
 <ul class="nav nav-tabs nav-justified" data-service-tabs="service_channels">
-    <li data-service-tab="electronic_service" class="active"><a href="javascript:void(0);"><i class="icon-plus"></i> {{ _('Electronic Service' ) }}</a></li>
-    <li data-service-tab="office_or_service_point"><a href="javascript:void(0);"><i class="icon-plus"></i> {{ _('Office or Service Point') }}</a></li>
-    <li data-service-tab="postal_address"><a href="javascript:void(0);"><i class="icon-plus"></i> {{ _('Postal Address') }}</a></li>
-    <li data-service-tab="telephone_service"><a href="javascript:void(0);"><i class="icon-plus"></i> {{ _('Telephone Service') }}</a></li>
+    <li data-service-tab="electronic_service" class="active"><a href="javascript:void(0);"><i class="fa fa-plus"></i> {{ _('Electronic Service' ) }}</a></li>
+    <li data-service-tab="office_or_service_point"><a href="javascript:void(0);"><i class="fa fa-plus"></i> {{ _('Office or Service Point') }}</a></li>
+    <li data-service-tab="postal_address"><a href="javascript:void(0);"><i class="fa fa-plus"></i> {{ _('Postal Address') }}</a></li>
+    <li data-service-tab="telephone_service"><a href="javascript:void(0);"><i class="fa fa-plus"></i> {{ _('Telephone Service') }}</a></li>
 </ul>
 
 

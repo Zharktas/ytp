@@ -98,7 +98,7 @@ $(document).ready(function() {
         var link = $('<a href="javascript:void(0);"></a>');
         var removeLink = $("#service-channel-remove-template").clone();
         removeLink.show();
-        link.appendTo(container).append('<i class="icon-plus"></i> ' + $('[data-service-tab=' + element + ']').text());
+        link.appendTo(container).append('<i class="fa fa-plus"></i> ' + $('[data-service-tab=' + element + ']').text());
         removeLink.appendTo(container);
 
         container.append(clonedData);

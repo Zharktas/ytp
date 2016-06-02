@@ -7,7 +7,7 @@
       <input id="field-user-search"  style="height: 2em;"  class="field" name="q" placeholder="{{ _('Search Users') }}" value="{{ query }}" />
       <!-- <button class="btn-search" type="submit">{{ _('Search') }}</button> -->
       <button value="search" type="submit">
-        <i class="icon-search"></i>
+        <i class="fa fa-search"></i>
         <span>{{ _('Search') }}</span>
       </button>
     </div>
@@ -18,7 +18,7 @@
           <option value="created" {% if order_by == 'created' -%}selected="selected"{%- endif -%}>{{ _('Order by register date') }}</option>
       </select>
       <a href="{% url_for controller='user', action='index' %}">
-        <i class="icon-large icon-remove-sign" title="{{ _("Clear search") }}"></i>
+        <i class="fa fa-lg fa-times-circle" title="{{ _("Clear search") }}"></i>
       </a>
     </div>
   </form>
