@@ -54,9 +54,9 @@
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-top-collapse">
         <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+        <span class="fa fa-bar"></span>
+        <span class="fa fa-bar"></span>
+        <span class="fa fa-bar"></span>
       </button>
       <a class="navbar-brand" href="/<?php echo $language->language; ?>">
           <?php
@@ -117,7 +117,7 @@
         <div class="btn-primary active search-small" role="search">
            <form class="" action="/data/<?php print $language->language ?>/dataset">
                 <input class="btn-primary active" type="text" name="q" placeholder="<?php print t("Search datasets...")?>">
-                <button type="submit" class="btn-primary active search-small-submit"><i class="icon-search"></i></button>
+                <button type="submit" class="btn-primary active search-small-submit"><i class="fa fa-search"></i></button>
                 <input type="hidden" name="sort" value="score desc, metadata_modified desc" />
             </form>
         </div>
@@ -173,7 +173,7 @@
           </li>
           <li class="notifications">
                <a href="/data/<?php echo $language->language; ?>/dashboard">
-                  <i class="icon-dashboard"></i>
+                  <i class="fa fa-dashboard"></i>
                   <span><?php echo $new_activities; ?></span>
                </a>
           </li>
@@ -181,12 +181,12 @@
             <a href="/<?php echo $language->language; ?>/user/logout" class="login"><?php echo t("Log out"); ?></a>
           </li>
           <?php } ?>
-          <!-- <li><a href="#"><span class="icon icon-cart-navbar"></span> <?php echo t("Own checklist"); ?> (0)</a></li> -->
+
         </ul>
         <div class="btn-primary active search-small" role="search">
            <form class="" action="/data/<?php print $language->language ?>/dataset">
                 <input class="btn-primary active" type="text" name="q" placeholder="<?php print t("Search datasets...")?>">
-                <button type="submit" class="btn-primary active search-small-submit"><i class="icon-search"></i></button>
+                <button type="submit" class="btn-primary active search-small-submit"><i class="fa fa-search"></i></button>
                 <input type="hidden" name="sort" value="score desc, metadata_modified desc" />
             </form>
         </div>
